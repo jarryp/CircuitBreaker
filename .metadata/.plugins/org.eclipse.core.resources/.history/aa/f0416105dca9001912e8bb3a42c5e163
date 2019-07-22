@@ -1,0 +1,33 @@
+package com.palaciossystems.bookMyShow.api;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
+
+@SpringBootApplication
+@RestController
+public class BookMyShowApplication {
+	
+	@Autowired
+	private RestTemplate template;
+	
+	public String BookShow() {
+		
+		String emailServiceResponse = template.getForObject("http://localhost:9000/emailService/send", String.class);
+		String paymentServiceResponse = template.getForObject("http://localhost:9001/paymentService/pay", String.class);
+		return emailServiceResponse + "\n" + paymentServiceResponse;
+		
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(BookMyShowApplication.class, args);
+	}
+	
+	
+	public RestTemplate template() {
+		return new RestTemplate();
+	}
+
+}

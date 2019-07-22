@@ -1,0 +1,18 @@
+package com.palaciossystems.circuitbreaker.notification;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class EmailServiceApplication {
+	
+	
+	public String sendEmail() {
+		return "Email service called...";
+	}
+
+	public static void main(String[] args) {
+		SpringApplication.run(EmailServiceApplication.class, args);
+	}
+
+}
